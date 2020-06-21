@@ -8,6 +8,12 @@ It also supports (n)vim shorthand for setting the filetype (see example below).
 # Examples
 
 ```
+$ curl https://get.docker.com | vp | sh
+```
+
+View bash script before executing.
+
+```
 $ cat query-template.sql | vp +"/{" | sqlite3 file.db
 ```
 
@@ -15,13 +21,14 @@ This argument tells `vim` (the configured editor) to jump to the template marker
 '{' so that a query template can be filled in and passed to sqlite.
 
 ```
-$ curl https://get.docker.com | vp sh | sh
+$ cat data.json | vp json | jq '.foo.bar'
 ```
 
-Shorthand for vp -c "set ft=sh". Setting the filetype in vim enables syntax
+Shorthand for `vp +"set ft=json"`. Setting the filetype in vim enables syntax
 highlighting, linting, and so on. Modelines are sometimes used to do this, but
-files downloaded from the internet (like above) won't have them, and many people
-like to disable them for security reasons.
+not all files have them, and many people like to disable them for security
+reasons. Also, filetype detection often does not work when no file extension is
+available.
 
 # Installation
 
